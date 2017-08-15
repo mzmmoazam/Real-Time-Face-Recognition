@@ -5,8 +5,7 @@ This is face recognition tool that you can train using your webcam (creating you
 1. Step one :
 
 Create dataset of images.
-```python create_dataset.py name_of_the_person
-```
+```python create_dataset.py name_of_the_person```
 The second argument is name of the person whose dataset has to be made.Don't worry it will ask for a name if you forget to give the command 
 line argument.
 There will be a pop projecting feed from your webcam.
