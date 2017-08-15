@@ -66,7 +66,7 @@ class preprocess():
 count = 0
 
 cap = cv2.VideoCapture(0)
-cascade = "../face_cascade.xml"
+cascade = "face_cascade.xml"
 face_cascade=cv2.CascadeClassifier(cascade)
 dir_path = False
 
