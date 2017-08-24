@@ -4,6 +4,9 @@ from tflearn.layers.core import input_data, dropout, fully_connected
 from tflearn.layers.conv import conv_2d, max_pool_2d
 from tflearn.layers.normalization import local_response_normalization
 from tflearn.layers.estimator import regression
+from tflearn.data_preprocessing import ImagePreprocessing
+from tflearn.data_augmentation import ImageAugmentation
+from tflearn.data_utils import  shuffle
 
 Datafile = shelve.open("Data.db")
 if 'Data' not in Datafile.keys():
@@ -51,11 +54,23 @@ def get_images(path):
             continue
         images[count, :, :] = image
         labels.append(Data_list.index(labl)) # one hot encoding here
+    images,labels = shuffle(images,labels)
     return images, labels, count
 
 
 def net(X, Y,save_model=False):
     tflearn.config.init_graph(gpu_memory_fraction=1)
+    
+    # Real-time data augmentation
+    img_aug = ImageAugmentation()
+    img_aug.add_random_flip_leftright()
+    img_aug.add_random_rotation(max_angle=25.)
+
+    # Real-time data preprocessing
+    img_prep = ImagePreprocessing()
+    img_prep.add_featurewise_zero_center()
+    img_prep.add_featurewise_stdnorm()
+    
     # Building convolutional network
     network = input_data(shape=[None, 48, 48, 3], name='input')
     network = conv_2d(network, 32, 3, activation='relu', regularizer="L2")
