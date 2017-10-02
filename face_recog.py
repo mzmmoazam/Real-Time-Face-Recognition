@@ -38,7 +38,7 @@ def get_images(path):
         labl = regex.split(img)
         labl = labl[0]
         count = count + 1
-        # Make_Changes(labl)
+        Make_Changes(labl)
         image_path = os.path.join(path, img)
         image = cv2.imread(image_path)
         try:
