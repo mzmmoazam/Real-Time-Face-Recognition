@@ -127,7 +127,7 @@ def initialize_recognizer(save_model=False):
 
 
 FONT = cv2.FONT_HERSHEY_SIMPLEX
-CASCADE = "../face_cascade.xml"
+CASCADE = "face_cascade.xml"
 FACE_CASCADE = cv2.CascadeClassifier(CASCADE)
 
 def recognize_video(face_recognizer):
