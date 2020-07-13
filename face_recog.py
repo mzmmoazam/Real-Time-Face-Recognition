@@ -71,6 +71,7 @@ def net(X, Y,save_model=False):
     img_prep.add_featurewise_zero_center()
     img_prep.add_featurewise_stdnorm()
     
+    # use Transfer learning for better performance
     # Building convolutional network
     network = input_data(shape=[None, 48, 48, 3], name='input')
     network = conv_2d(network, 32, 3, activation='relu', regularizer="L2")
